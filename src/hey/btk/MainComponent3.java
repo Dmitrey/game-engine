@@ -69,23 +69,23 @@ public class MainComponent3 {
     }
 
     public static void main(String[] args) {
-//        Window.createWindow(width, height, title);
-//        new MainComponent3().run();
+        Window.createWindow(width, height, title);
+        new MainComponent3().run();
 
-        String s = new Vector3f(-2, 3, 0).cross(new Vector3f(-2, 0, 6)).toString();
-        System.out.println(s);
-
-        Matrix m1 = new Matrix(
-                3,5,4,6,
-                7,8,6,5,
-                4,3,4,5,
-                7,8,9,3);
-        Matrix m2 = new Matrix(
-                3,5,4,6,
-                7,8,6,5,
-                4,3,4,5,
-                7,8,9,3);
-        m1.mult(m2).print();
+//        String s = new Vector3f(-2, 3, 0).cross(new Vector3f(-2, 0, 6)).toString();
+//        System.out.println(s);
+//
+//        Matrix m1 = new Matrix(
+//                3,5,4,6,
+//                7,8,6,5,
+//                4,3,4,5,
+//                7,8,9,3);
+//        Matrix m2 = new Matrix(
+//                3,5,4,6,
+//                7,8,6,5,
+//                4,3,4,5,
+//                7,8,9,3);
+//        m1.mult(m2).print();
 
     }
 }
