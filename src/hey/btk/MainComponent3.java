@@ -11,11 +11,13 @@ public class MainComponent3 {
     private Game game;
 
     public MainComponent3() {
+        RenderUtil.initGraphics();
         isRunning = false;
         game = new Game();
     }
 
     public void render() {
+        RenderUtil.clearScreen();
         game.render();
         Window.render();
     }
