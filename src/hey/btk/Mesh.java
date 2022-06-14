@@ -22,9 +22,10 @@ public class Mesh {
     public void draw(){
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER,vbo);
-        glVertexAttribPointer(0,3,GL_DOUBLE,false,Vertex.SIZE * 4,0);
+        glVertexAttribPointer(0,3,GL_DOUBLE,false,Vertex.SIZE * 8,0);
 
         glDrawArrays(GL_TRIANGLES,0,size);
+//        glDrawArrays(GL_LINE_STRIP,0,size);
         glDisableVertexAttribArray(0);
     }
 }

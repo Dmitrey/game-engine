@@ -13,7 +13,7 @@ public class RenderUtil {
     }
 
     public static void initGraphics(){
-        glClearColor(1,1,0,0);
+        glClearColor(0,0,0,0);
 
         glFrontFace(GL_CW);
         glCullFace(GL_BACK);
@@ -22,4 +22,9 @@ public class RenderUtil {
 
         glEnable(GL_FRAMEBUFFER_SRGB);
     }
+
+    public static String getOpenGLVersion(){
+        return glGetString(GL_VERSION);
+    }
+
 }

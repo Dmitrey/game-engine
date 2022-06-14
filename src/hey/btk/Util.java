@@ -3,7 +3,6 @@ package hey.btk;
 import org.lwjgl.BufferUtils;
 
 import java.nio.DoubleBuffer;
-import java.nio.FloatBuffer;
 
 public class Util {
 
