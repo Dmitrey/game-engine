@@ -21,6 +21,8 @@ public class Game {
         shader.addVertexShader(ResourceLoader.loadShader("basicVertex.glsl"));
         shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.glsl"));
         shader.compileShader();
+
+        shader.addUniform("uniformFloat");
     }
 
     public void input() {
@@ -44,7 +46,12 @@ public class Game {
         }
     }
 
-    public void update(){}
+    float temp = 0;
+
+    public void update(){
+        temp+=Time.getDelta();
+        shader.setUniformF("uniformFloat",(float)Math.abs(Math.sin(temp)));
+    }
 
     public void render(){
         shader.bind();

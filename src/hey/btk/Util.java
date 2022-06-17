@@ -3,10 +3,11 @@ package hey.btk;
 import org.lwjgl.BufferUtils;
 
 import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
 
 public class Util {
 
-    public static DoubleBuffer createDoubleBuffer(int size){
+    private static DoubleBuffer createDoubleBuffer(int size){
         return BufferUtils.createDoubleBuffer(size);
     }
 
@@ -20,5 +21,14 @@ public class Util {
 
         buffer.flip();
         return buffer;
+    }
+
+    public static FloatBuffer createFlippedBuffer(Matrix matrix){
+        FloatBuffer floatBuffer  = BufferUtils.createFloatBuffer(4*4);
+        for (float[] row: matrix.getMatrix()) {
+            floatBuffer.put(row);
+        }
+        floatBuffer.flip();
+        return floatBuffer;
     }
 }
