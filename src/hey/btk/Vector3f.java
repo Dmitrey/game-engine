@@ -2,24 +2,24 @@ package hey.btk;
 
 public class Vector3f {
 
-    private double i; //проекция по базису i
-    private double j; //проекция по базису j
-    private double k; //проекция по базису k
+    private float i; //проекция по базису i
+    private float j; //проекция по базису j
+    private float k; //проекция по базису k
 
     public Vector3f() {
     }
 
-    public Vector3f(double i, double j, double k) {
+    public Vector3f(float i, float j, float k) {
         this.i = i;
         this.j = j;
         this.k = k;
     }
 
-    public double length(){
-        return Math.sqrt(i * i + j * j + k * k);
+    public float length(){
+        return (float) Math.sqrt(i * i + j * j + k * k);
     }
 
-    public Vector3f mult(double x) {
+    public Vector3f mult(float x) {
         return new Vector3f(getI() * x, getJ() * x, getK() * x);
     }
 
@@ -28,7 +28,7 @@ public class Vector3f {
     }
 
     public Vector3f normalize() {
-        double length = length();
+        float length = length();
         setI(i / length);
         setJ(j / length);
         setK(k / length);
@@ -40,9 +40,9 @@ public class Vector3f {
     }
 
     public Vector3f cross(Vector3f vec2){
-        double resI = j* vec2.getK() - k * vec2.getJ();
-        double resJ = -i* vec2.getK() + k * vec2.getI();
-        double resK = i* vec2.getJ() - j * vec2.getI();
+        float resI = j* vec2.getK() - k * vec2.getJ();
+        float resJ = -i* vec2.getK() + k * vec2.getI();
+        float resK = i* vec2.getJ() - j * vec2.getI();
         return new Vector3f(resI,resJ,resK);
     }
 
@@ -53,27 +53,28 @@ public class Vector3f {
 //        return new Vector3f(i * cos - j * sin, i * sin + j * cos);
 //    }
 
-    public double getI() {
+
+    public float getI() {
         return i;
     }
 
-    public void setI(double i) {
+    public void setI(float i) {
         this.i = i;
     }
 
-    public double getJ() {
+    public float getJ() {
         return j;
     }
 
-    public void setJ(double j) {
+    public void setJ(float j) {
         this.j = j;
     }
 
-    public double getK() {
+    public float getK() {
         return k;
     }
 
-    public void setK(double k) {
+    public void setK(float k) {
         this.k = k;
     }
 

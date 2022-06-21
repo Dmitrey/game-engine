@@ -1,10 +1,14 @@
 package hey.btk;
 
-public class Matrix {
+public class Matrix4f {
 
-    private float[][] matrix = new float[4][4];
+    private float[][] matrix;
 
-    public Matrix() {
+    public Matrix4f() {
+        matrix = new float[4][4];
+    }
+
+    public Matrix4f initIdentity(){
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 if (i == j)
@@ -13,12 +17,23 @@ public class Matrix {
                     matrix[i][j] = 0;
             }
         }
+
+        return this;
     }
 
-    public Matrix(float m00, float m01, float m02, float m03,
-                  float m10, float m11, float m12, float m13,
-                  float m20, float m21, float m22, float m23,
-                  float m30, float m31, float m32, float m33) {
+    public Matrix4f initTranslation(float x, float y, float z){
+        matrix[0][0] = 1; matrix[0][1] = 0; matrix[0][2] = 0; matrix[0][3] = x;
+        matrix[1][0] = 0; matrix[1][1] = 1; matrix[1][2] = 0; matrix[1][3] = y;
+        matrix[2][0] = 0; matrix[2][1] = 0; matrix[2][2] = 1; matrix[2][3] = z;
+        matrix[3][0] = 0; matrix[3][1] = 0; matrix[3][2] = 0; matrix[3][3] = 1;
+
+        return this;
+    }
+
+    public Matrix4f(float m00, float m01, float m02, float m03,
+                    float m10, float m11, float m12, float m13,
+                    float m20, float m21, float m22, float m23,
+                    float m30, float m31, float m32, float m33) {
         setValue(0, 0, m00);
         setValue(0, 1, m01);
         setValue(0, 2, m02);
@@ -49,8 +64,10 @@ public class Matrix {
 //        return c;
 //    }
 
-    public Matrix mult(Matrix m2) {
-        Matrix res = new Matrix();
+
+
+    public Matrix4f mult(Matrix4f m2) {
+        Matrix4f res = new Matrix4f();
         res.clear();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {

@@ -23,9 +23,9 @@ public class Util {
         return buffer;
     }
 
-    public static FloatBuffer createFlippedBuffer(Matrix matrix){
+    public static FloatBuffer createFlippedBuffer(Matrix4f matrix4f){
         FloatBuffer floatBuffer  = BufferUtils.createFloatBuffer(4*4);
-        for (float[] row: matrix.getMatrix()) {
+        for (float[] row: matrix4f.getMatrix()) {
             floatBuffer.put(row);
         }
         floatBuffer.flip();
