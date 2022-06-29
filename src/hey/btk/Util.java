@@ -4,6 +4,7 @@ import org.lwjgl.BufferUtils;
 
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 
 public class Util {
 
@@ -21,6 +22,10 @@ public class Util {
 
         buffer.flip();
         return buffer;
+    }
+
+    public static IntBuffer createFlippedIntBuffer(int[] indices){
+        return (IntBuffer)BufferUtils.createIntBuffer(indices.length).put(indices).flip();
     }
 
     public static FloatBuffer createFlippedBuffer(Matrix4f matrix4f){
