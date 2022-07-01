@@ -9,22 +9,25 @@ public class Game {
     private Transform transform;
 
     public Game() {
-        mesh = new Mesh();
+
+        mesh = ResourceLoader.loadMesh("box.obj");
+//        mesh = new Mesh();
+
+//        Vertex[] data = new Vertex[]{
+//                new Vertex(new Vector3f(-1, -1, 0)),
+//                new Vertex(new Vector3f(0, 1, 0)),
+//                new Vertex(new Vector3f(1, -1, 0)),
+//                new Vertex(new Vector3f(0, -1, 1))
+//        };
+//
+//        int[] indices = new int[]{
+//                0,1,3,
+//                3,1,2,
+//                2,1,0,
+//                0,2,3};
+//
+//        mesh.addVertices(data,indices);
         shader = new Shader();
-        Vertex[] data = new Vertex[]{
-                new Vertex(new Vector3f(-1, -1, 0)),
-                new Vertex(new Vector3f(0, 1, 0)),
-                new Vertex(new Vector3f(1, -1, 0)),
-                new Vertex(new Vector3f(0, -1, 1))
-        };
-
-        int[] indices = new int[]{
-                0,1,3,
-                3,1,2,
-                2,1,0,
-                0,2,3};
-
-        mesh.addVertices(data,indices);
         transform = new Transform();
         shader.addVertexShader(ResourceLoader.loadShader("basicVertex.glsl"));
         shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.glsl"));
@@ -60,9 +63,9 @@ public class Game {
         temp += Time.getDelta();
 //        shader.setUniformF("uniformFloat",(float)Math.abs(Math.sin(temp)));
         float sin = (float) Math.sin(temp);
-//        transform.setTranslation(sin, 0, 0);
+        transform.setTranslation(sin, 0, 0);
         transform.setRotation(0, 100 * sin,0);
-//        transform.setScale(sin, sin,sin);
+        transform.setScale(sin, sin,sin);
     }
 
     public void render() {
