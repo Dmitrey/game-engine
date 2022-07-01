@@ -29,21 +29,16 @@ public class Mesh {
         glBufferData(GL_ARRAY_BUFFER, Util.createFlippedBuffer(vertices), GL_STATIC_DRAW);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,ibo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER,Util.createFlippedIntBuffer(indices),GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER,Util.createFlippedBuffer(indices),GL_STATIC_DRAW);
 
-        glVertexAttribPointer(0,3,GL_DOUBLE,false,Vertex.SIZE * 8,0);
+        glVertexAttribPointer(0,3,GL_FLOAT,false,Vertex.SIZE * 4,0);
         glEnableVertexAttribArray(0);
     }
 
     public void draw(){
-//        glEnableVertexAttribArray(0);
-        glBindVertexArray(vao);
-//        glBindBuffer(GL_ARRAY_BUFFER,vbo);
-//
-//        glVertexAttribPointer(0,3,GL_DOUBLE,false,Vertex.SIZE * 8,0);
 
-        glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,0);
-//        glDrawArrays(GL_LINE_STRIP,0,size);
-//        glDisableVertexAttribArray(0);
+        glBindVertexArray(vao);
+        glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);
+
     }
 }

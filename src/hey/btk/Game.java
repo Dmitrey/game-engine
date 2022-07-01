@@ -22,7 +22,7 @@ public class Game {
                 0,1,3,
                 3,1,2,
                 2,1,0,
-                0,2,3,};
+                0,2,3};
 
         mesh.addVertices(data,indices);
         transform = new Transform();
@@ -61,7 +61,7 @@ public class Game {
 //        shader.setUniformF("uniformFloat",(float)Math.abs(Math.sin(temp)));
         float sin = (float) Math.sin(temp);
 //        transform.setTranslation(sin, 0, 0);
-        transform.setRotation(0, sin * 180,0);
+        transform.setRotation(0, 100 * sin,0);
 //        transform.setScale(sin, sin,sin);
     }
 
