@@ -55,9 +55,9 @@ public class ResourceLoader {
                     continue;
                 else if(tokens[0].equals("v"))
                 {
-                    vertices.add(new Vertex(new Vector3f(Float.valueOf(tokens[1]),
-                            Float.valueOf(tokens[2]),
-                            Float.valueOf(tokens[3]))));
+                    vertices.add(new Vertex(new Vector3f(Float.parseFloat(tokens[1]),
+                            Float.parseFloat(tokens[2]),
+                            Float.parseFloat(tokens[3]))));
                 }
                 else if(tokens[0].equals("f"))
                 {

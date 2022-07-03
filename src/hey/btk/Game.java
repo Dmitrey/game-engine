@@ -63,9 +63,9 @@ public class Game {
         temp += Time.getDelta();
 //        shader.setUniformF("uniformFloat",(float)Math.abs(Math.sin(temp)));
         float sin = (float) Math.sin(temp);
-        transform.setTranslation(sin, 0, 0);
-        transform.setRotation(0, 100 * sin,0);
-        transform.setScale(sin, sin,sin);
+//        transform.setTranslation(sin, 0, 0);
+        transform.setRotation(100 * sin, 100 * sin,0);
+//        transform.setScale(sin, sin,sin);
     }
 
     public void render() {

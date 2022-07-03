@@ -4,7 +4,7 @@ public class MainComponent3 {
 
     public static String title = "game engine";
     public static int width = 800;
-    public static int height = 600;
+    public static int height = 800;
     public static final int frame_cap = 5000;
 
     public boolean isRunning;
