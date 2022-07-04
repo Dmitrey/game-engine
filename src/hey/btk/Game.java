@@ -29,6 +29,7 @@ public class Game {
 //        mesh.addVertices(data,indices);
         shader = new Shader();
         transform = new Transform();
+        transform.setProjection(90, Window.getWidth(),Window.getHeight(),0.1f,1000);
         shader.addVertexShader(ResourceLoader.loadShader("basicVertex.glsl"));
         shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.glsl"));
         shader.compileShader();
@@ -63,14 +64,14 @@ public class Game {
         temp += Time.getDelta();
 //        shader.setUniformF("uniformFloat",(float)Math.abs(Math.sin(temp)));
         float sin = (float) Math.sin(temp);
-//        transform.setTranslation(sin, 0, 0);
+        transform.setTranslation(sin, 0, 5);
         transform.setRotation(100 * sin, 100 * sin,0);
 //        transform.setScale(sin, sin,sin);
     }
 
     public void render() {
         shader.bind();
-        shader.setUniform("transform", transform.getTransformation());
+        shader.setUniform("transform", transform.getProjectedTransformation());
         mesh.draw();
     }
 }

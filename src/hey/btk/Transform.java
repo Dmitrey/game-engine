@@ -2,6 +2,12 @@ package hey.btk;
 
 public class Transform {
 
+    private static float zNear;
+    private static float zFar;
+    private static float width;
+    private static float height;
+    private static float fov;
+
     private Vector3f translation;
     private Vector3f rotation;
     private Vector3f scale;
@@ -17,6 +23,25 @@ public class Transform {
         Matrix4f rotationMatrix4f = new Matrix4f().initRotation(rotation.getI(), rotation.getJ(), rotation.getK());
         Matrix4f scaleMatrix4f = new Matrix4f().initScaling(scale.getI(), scale.getJ(), scale.getK());
         return translationMatrix4f.mult(rotationMatrix4f.mult(scaleMatrix4f));
+    }
+
+    public Matrix4f getProjectedTransformation()
+    {
+        Matrix4f transformationMatrix = getTransformation();
+        Matrix4f projectionMatrix = new Matrix4f().initProjection(fov, width, height, zNear, zFar);
+        //todo here
+        //Matrix4f cameraRotation = new Matrix4f().initCamera(ca)
+
+        return projectionMatrix.mult(transformationMatrix);
+    }
+
+    public void setProjection(float fov, float width, float height, float zNear, float zFar)
+    {
+        Transform.fov = fov;
+        Transform.width = width;
+        Transform.height = height;
+        Transform.zNear = zNear;
+        Transform.zFar = zFar;
     }
 
     public Vector3f getTranslation() {

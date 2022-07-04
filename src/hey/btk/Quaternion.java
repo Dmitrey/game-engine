@@ -1,12 +1,12 @@
 package hey.btk;
 
 public class Quaternion {
-    private double x;
-    private double y;
-    private double z;
-    private double w;
+    private float x;
+    private float y;
+    private float z;
+    private float w;
 
-    public Quaternion(double x, double y, double z, double w)
+    public Quaternion(float x, float y, float z, float w)
     {
         this.x = x;
         this.y = y;
@@ -14,16 +14,21 @@ public class Quaternion {
         this.w = w;
     }
 
-    public double length()
+    public float length()
     {
-        return Math.sqrt(x * x + y * y + z * z + w * w);
+        return (float)Math.sqrt(x * x + y * y + z * z + w * w);
     }
 
-    public Quaternion normalized()
+    public Quaternion normalize()
     {
-        double length = length();
+        float length = length();
 
-        return new Quaternion(x / length, y / length, z / length, w / length);
+        x /= length;
+        y /= length;
+        z /= length;
+        w /= length;
+
+        return this;
     }
 
     public Quaternion conjugate()
@@ -31,60 +36,63 @@ public class Quaternion {
         return new Quaternion(-x, -y, -z, w);
     }
 
-    public Quaternion mul(double r)
-    {
-        return new Quaternion(x * r, y * r, z * r, w * r);
-    }
-
     public Quaternion mul(Quaternion r)
     {
-        double w_ = w * r.getW() - x * r.getX() - y * r.getY() - z * r.getZ();
-        double x_ = x * r.getW() + w * r.getX() + y * r.getZ() - z * r.getY();
-        double y_ = y * r.getW() + w * r.getY() + z * r.getX() - x * r.getZ();
-        double z_ = z * r.getW() + w * r.getZ() + x * r.getY() - y * r.getX();
+        float w_ = w * r.getW() - x * r.getX() - y * r.getY() - z * r.getZ();
+        float x_ = x * r.getW() + w * r.getX() + y * r.getZ() - z * r.getY();
+        float y_ = y * r.getW() + w * r.getY() + z * r.getX() - x * r.getZ();
+        float z_ = z * r.getW() + w * r.getZ() + x * r.getY() - y * r.getX();
 
         return new Quaternion(x_, y_, z_, w_);
     }
 
     public Quaternion mul(Vector3f r)
     {
-        double w_ = -x * r.getI() - y * r.getJ() - z * r.getK();
-        double x_ =  w * r.getI() + y * r.getK() - z * r.getJ();
-        double y_ =  w * r.getJ() + z * r.getI() - x * r.getK();
-        double z_ =  w * r.getK() + x * r.getJ() - y * r.getI();
+        float w_ = -x * r.getI() - y * r.getJ() - z * r.getK();
+        float x_ =  w * r.getI() + y * r.getK() - z * r.getJ();
+        float y_ =  w * r.getJ() + z * r.getI() - x * r.getK();
+        float z_ =  w * r.getK() + x * r.getJ() - y * r.getI();
 
         return new Quaternion(x_, y_, z_, w_);
     }
 
-    public double getX() {
+    public float getX()
+    {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(float x)
+    {
         this.x = x;
     }
 
-    public double getY() {
+    public float getY()
+    {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(float y)
+    {
         this.y = y;
     }
 
-    public double getZ() {
+    public float getZ()
+    {
         return z;
     }
 
-    public void setZ(double z) {
+    public void setZ(float z)
+    {
         this.z = z;
     }
 
-    public double getW() {
+    public float getW()
+    {
         return w;
     }
 
-    public void setW(double w) {
+    public void setW(float w)
+    {
         this.w = w;
     }
 }

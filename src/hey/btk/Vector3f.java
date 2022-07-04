@@ -46,12 +46,34 @@ public class Vector3f {
         return new Vector3f(resI,resJ,resK);
     }
 
-//    public Vector3f rotate(double degrees) {
-//        double rad = Math.toRadians(degrees);
+//    public Vector3f rotate(float angle, Vector3f axis) {
+//        double rad = Math.toRadians(angle);
 //        double sin = Math.sin(rad);
 //        double cos = Math.cos(rad);
 //        return new Vector3f(i * cos - j * sin, i * sin + j * cos);
 //    }
+
+    public Vector3f rotate(float angle, Vector3f axis)
+    {
+        float sinHalfAngle = (float)Math.sin(Math.toRadians(angle / 2));
+        float cosHalfAngle = (float)Math.cos(Math.toRadians(angle / 2));
+
+        float rX = axis.getI() * sinHalfAngle;
+        float rY = axis.getJ() * sinHalfAngle;
+        float rZ = axis.getK() * sinHalfAngle;
+        float rW = cosHalfAngle;
+
+        Quaternion rotation = new Quaternion(rX, rY, rZ, rW);
+        Quaternion conjugate = rotation.conjugate();
+
+        Quaternion w = rotation.mul(this).mul(conjugate);
+
+        i = w.getX();
+        j = w.getY();
+        k = w.getZ();
+
+        return this;
+    }
 
 
     public float getI() {
