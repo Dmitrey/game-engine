@@ -2,47 +2,47 @@ package hey.btk;
 
 public class Vector3f {
 
-    private float i; //проекция по базису i
-    private float j; //проекция по базису j
-    private float k; //проекция по базису k
+    private float x; //проекция по базису i
+    private float y; //проекция по базису j
+    private float z; //проекция по базису k
 
     public Vector3f() {
     }
 
     public Vector3f(float i, float j, float k) {
-        this.i = i;
-        this.j = j;
-        this.k = k;
+        this.x = i;
+        this.y = j;
+        this.z = k;
     }
 
     public float length(){
-        return (float) Math.sqrt(i * i + j * j + k * k);
+        return (float) Math.sqrt(x * x + y * y + z * z);
     }
 
     public Vector3f mult(float x) {
-        return new Vector3f(getI() * x, getJ() * x, getK() * x);
+        return new Vector3f(getX() * x, getY() * x, getZ() * x);
     }
 
     public Vector3f add(Vector3f vec2) {
-        return new Vector3f(i + vec2.getI(), j + vec2.getJ(), k + vec2.getK());
+        return new Vector3f(x + vec2.getX(), y + vec2.getY(), z + vec2.getZ());
     }
 
     public Vector3f normalize() {
         float length = length();
-        setI(i / length);
-        setJ(j / length);
-        setK(k / length);
+        setX(x / length);
+        setY(y / length);
+        setZ(z / length);
         return this;
     }
 
     public double dot(Vector3f vec2) {
-        return i * vec2.getI() + j * vec2.getJ() + k * vec2.getK();
+        return x * vec2.getX() + y * vec2.getY() + z * vec2.getZ();
     }
 
     public Vector3f cross(Vector3f vec2){
-        float resI = j* vec2.getK() - k * vec2.getJ();
-        float resJ = -i* vec2.getK() + k * vec2.getI();
-        float resK = i* vec2.getJ() - j * vec2.getI();
+        float resI = y * vec2.getZ() - z * vec2.getY();
+        float resJ = -x * vec2.getZ() + z * vec2.getX();
+        float resK = x * vec2.getY() - y * vec2.getX();
         return new Vector3f(resI,resJ,resK);
     }
 
@@ -58,9 +58,9 @@ public class Vector3f {
         float sinHalfAngle = (float)Math.sin(Math.toRadians(angle / 2));
         float cosHalfAngle = (float)Math.cos(Math.toRadians(angle / 2));
 
-        float rX = axis.getI() * sinHalfAngle;
-        float rY = axis.getJ() * sinHalfAngle;
-        float rZ = axis.getK() * sinHalfAngle;
+        float rX = axis.getX() * sinHalfAngle;
+        float rY = axis.getY() * sinHalfAngle;
+        float rZ = axis.getZ() * sinHalfAngle;
         float rW = cosHalfAngle;
 
         Quaternion rotation = new Quaternion(rX, rY, rZ, rW);
@@ -68,44 +68,44 @@ public class Vector3f {
 
         Quaternion w = rotation.mul(this).mul(conjugate);
 
-        i = w.getX();
-        j = w.getY();
-        k = w.getZ();
+        x = w.getX();
+        y = w.getY();
+        z = w.getZ();
 
         return this;
     }
 
 
-    public float getI() {
-        return i;
+    public float getX() {
+        return x;
     }
 
-    public void setI(float i) {
-        this.i = i;
+    public void setX(float x) {
+        this.x = x;
     }
 
-    public float getJ() {
-        return j;
+    public float getY() {
+        return y;
     }
 
-    public void setJ(float j) {
-        this.j = j;
+    public void setY(float y) {
+        this.y = y;
     }
 
-    public float getK() {
-        return k;
+    public float getZ() {
+        return z;
     }
 
-    public void setK(float k) {
-        this.k = k;
+    public void setZ(float z) {
+        this.z = z;
     }
 
     @Override
     public String toString() {
         return "Vector3f{" +
-                "i=" + i +
-                ", j=" + j +
-                ", k=" + k +
+                "i=" + x +
+                ", j=" + y +
+                ", k=" + z +
                 '}';
     }
 }

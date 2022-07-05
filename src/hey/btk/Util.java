@@ -2,7 +2,6 @@ package hey.btk;
 
 import org.lwjgl.BufferUtils;
 
-import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -34,9 +33,9 @@ public class Util {
 
         for(int i = 0; i < vertices.length; i++)
         {
-            buffer.put(vertices[i].getPos().getI());
-            buffer.put(vertices[i].getPos().getJ());
-            buffer.put(vertices[i].getPos().getK());
+            buffer.put(vertices[i].getPos().getX());
+            buffer.put(vertices[i].getPos().getY());
+            buffer.put(vertices[i].getPos().getZ());
         }
 
         buffer.flip();

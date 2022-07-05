@@ -7,9 +7,10 @@ public class Game {
     private Mesh mesh;
     private Shader shader;
     private Transform transform;
+    private Camera camera;
 
     public Game() {
-
+        camera = new Camera();
         mesh = ResourceLoader.loadMesh("box.obj");
 //        mesh = new Mesh();
 
@@ -29,7 +30,9 @@ public class Game {
 //        mesh.addVertices(data,indices);
         shader = new Shader();
         transform = new Transform();
-        transform.setProjection(90, Window.getWidth(),Window.getHeight(),0.1f,1000);
+
+        transform.setProjection(70, Window.getWidth(),Window.getHeight(),0.1f,1000);
+        transform.setCamera(camera);
         shader.addVertexShader(ResourceLoader.loadShader("basicVertex.glsl"));
         shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.glsl"));
         shader.compileShader();
@@ -38,6 +41,7 @@ public class Game {
     }
 
     public void input() {
+        camera.input();
         if (Input.getKeyDown(Keyboard.KEY_UP)) {
             System.out.println("KEY_UP pressed");
         }
@@ -65,7 +69,7 @@ public class Game {
 //        shader.setUniformF("uniformFloat",(float)Math.abs(Math.sin(temp)));
         float sin = (float) Math.sin(temp);
         transform.setTranslation(sin, 0, 5);
-        transform.setRotation(100 * sin, 100 * sin,0);
+        //transform.setRotation(100 * sin, 100 * sin,0);
 //        transform.setScale(sin, sin,sin);
     }
 

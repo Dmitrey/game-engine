@@ -91,9 +91,9 @@ public class Matrix4f {
 
         Vector3f u = f.cross(r);
 
-        matrix[0][0] = r.getI();	matrix[0][1] = r.getJ();	matrix[0][2] = r.getK();	matrix[0][3] = 0;
-        matrix[1][0] = u.getI();	matrix[1][1] = u.getK();	matrix[1][2] = u.getK();	matrix[1][3] = 0;
-        matrix[2][0] = f.getI();	matrix[2][1] = f.getJ();	matrix[2][2] = f.getK();	matrix[2][3] = 0;
+        matrix[0][0] = r.getX();	matrix[0][1] = r.getY();	matrix[0][2] = r.getZ();	matrix[0][3] = 0;
+        matrix[1][0] = u.getX();	matrix[1][1] = u.getY();	matrix[1][2] = u.getZ();	matrix[1][3] = 0;
+        matrix[2][0] = f.getX();	matrix[2][1] = f.getY();	matrix[2][2] = f.getZ();	matrix[2][3] = 0;
         matrix[3][0] = 0;		matrix[3][1] = 0;		matrix[3][2] = 0;		matrix[3][3] = 1;
 
         return this;

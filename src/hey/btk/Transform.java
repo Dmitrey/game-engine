@@ -2,6 +2,8 @@ package hey.btk;
 
 public class Transform {
 
+    private static Camera camera;
+
     private static float zNear;
     private static float zFar;
     private static float width;
@@ -19,9 +21,9 @@ public class Transform {
     }
 
     public Matrix4f getTransformation(){
-        Matrix4f translationMatrix4f = new Matrix4f().initTranslation(translation.getI(), translation.getJ(), translation.getK());
-        Matrix4f rotationMatrix4f = new Matrix4f().initRotation(rotation.getI(), rotation.getJ(), rotation.getK());
-        Matrix4f scaleMatrix4f = new Matrix4f().initScaling(scale.getI(), scale.getJ(), scale.getK());
+        Matrix4f translationMatrix4f = new Matrix4f().initTranslation(translation.getX(), translation.getY(), translation.getZ());
+        Matrix4f rotationMatrix4f = new Matrix4f().initRotation(rotation.getX(), rotation.getY(), rotation.getZ());
+        Matrix4f scaleMatrix4f = new Matrix4f().initScaling(scale.getX(), scale.getY(), scale.getZ());
         return translationMatrix4f.mult(rotationMatrix4f.mult(scaleMatrix4f));
     }
 
@@ -29,10 +31,10 @@ public class Transform {
     {
         Matrix4f transformationMatrix = getTransformation();
         Matrix4f projectionMatrix = new Matrix4f().initProjection(fov, width, height, zNear, zFar);
-        //todo here
-        //Matrix4f cameraRotation = new Matrix4f().initCamera(ca)
+        Matrix4f cameraRotation = new Matrix4f().initCamera(camera.getForward(), camera.getUp());
+        Matrix4f cameraTranslation = new Matrix4f().initTranslation(-camera.getPos().getX(), -camera.getPos().getY(), -camera.getPos().getZ());
 
-        return projectionMatrix.mult(transformationMatrix);
+        return projectionMatrix.mult(cameraRotation.mult(cameraTranslation.mult(transformationMatrix)));
     }
 
     public void setProjection(float fov, float width, float height, float zNear, float zFar)
@@ -78,5 +80,13 @@ public class Transform {
 
     public void setScale(float x, float y, float z) {
         this.scale = new Vector3f(x,y,z);
+    }
+
+    public Camera getCamera() {
+        return camera;
+    }
+
+    public void setCamera(Camera camera) {
+        Transform.camera = camera;
     }
 }
